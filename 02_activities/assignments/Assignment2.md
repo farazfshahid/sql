@@ -55,6 +55,32 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 
 ```
 Your answer...
+Architecture 1: Overwriting Changes
+CREATE TABLE customer_address (
+    customer_id INTEGER PRIMARY KEY REFERENCES customer(customer_id),
+    address_line_1 TEXT NOT NULL,
+    address_line_2 TEXT,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL,
+    postal_code TEXT NOT NULL
+);
+
+Architecture 2: Retaining Changes
+SQL Code: 
+CREATE TABLE customer_address (
+    customer_address_id INTEGER PRIMARY KEY,
+    customer_id INTEGER NOT NULL REFERENCES customer(customer_id),
+    address_line_1 TEXT NOT NULL,
+    address_line_2 TEXT,
+    city TEXT NOT NULL,
+    state TEXT NOT NULL,
+    postal_code TEXT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE,
+    is_current BOOLEAN DEFAULT TRUE
+);
+
+Refer to PDF for Prompt 3 for detailed answer with ERDs
 ```
 
 ***
